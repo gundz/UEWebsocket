@@ -29,7 +29,7 @@
 
 class UWebSocketBase;
 /**
- * 
+ *
  */
 UCLASS()
 class UWebSocketContext : public UObject, public FTickableGameObject
@@ -51,7 +51,7 @@ public:
 	UWebSocketBase* Connect(const FString& uri, const TMap<FString, FString>& header);
 
 	static int callback_echo(struct lws *wsi, enum lws_callback_reasons reason, void *user, void *in, size_t len);
-	
+
 private:
 	struct lws_context* mlwsContext;
 };

@@ -46,13 +46,16 @@ void UWebSocketBase::BeginDestroy()
 
 void UWebSocketBase::Connect(const FString& uri, const TMap<FString, FString>& header)
 {
+	UE_LOG(LogTemp, Warning, TEXT("Enter Connect()"));
 	if (uri.IsEmpty())
 	{
+		UE_LOG(LogTemp, Warning, TEXT("uri is null !"));
 		return;
 	}
 
 	if (mlwsContext == nullptr)
 	{
+		UE_LOG(LogTemp, Warning, TEXT("mlwsContext is null !"));
 		return;
 	}
 
@@ -60,14 +63,14 @@ void UWebSocketBase::Connect(const FString& uri, const TMap<FString, FString>& h
 	int iPos = uri.Find(TEXT(":"));
 	if (iPos == INDEX_NONE)
 	{
-		//UE_LOG(WebSocket, Error, TEXT("Invalid Websocket address:%s"), *uri);
+		UE_LOG(WebSocket, Error, TEXT("Invalid Websocket address:%s"), *uri);
 		return;
 	}
 
 	FString strProtocol = uri.Left(iPos);
 	if (strProtocol.ToUpper() != TEXT("WS") && strProtocol.ToUpper() != TEXT("WSS"))
 	{
-		//UE_LOG(WebSocket, Error, TEXT("Invalid Protol:%s"), *strProtocol);
+		UE_LOG(WebSocket, Error, TEXT("Invalid Protol:%s"), *strProtocol);
 		return;
 	}
 
@@ -179,7 +182,7 @@ bool UWebSocketBase::ProcessHeader(unsigned char** p, unsigned char* end)
 	{
 		return true;
 	}
-	
+
 	for (auto& it : mHeaderMap)
 	{
 		std::string strKey = TCHAR_TO_UTF8(*(it.Key) );

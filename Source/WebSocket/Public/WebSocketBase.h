@@ -49,7 +49,7 @@ public:
 	UWebSocketBase();
 
 	virtual void BeginDestroy() override;
-	
+
 	UFUNCTION(BlueprintCallable, Category = WebSocket)
 	void SendText(const FString& data);
 
