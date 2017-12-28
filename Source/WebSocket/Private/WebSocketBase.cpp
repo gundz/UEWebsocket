@@ -46,16 +46,13 @@ void UWebSocketBase::BeginDestroy()
 
 void UWebSocketBase::Connect(const FString& uri, const TMap<FString, FString>& header)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Enter Connect()"));
 	if (uri.IsEmpty())
 	{
-		UE_LOG(LogTemp, Warning, TEXT("uri is null !"));
 		return;
 	}
 
 	if (mlwsContext == nullptr)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("mlwsContext is null !"));
 		return;
 	}
 
