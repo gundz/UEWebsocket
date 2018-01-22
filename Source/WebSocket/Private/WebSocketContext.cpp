@@ -167,6 +167,11 @@ TStatId UWebSocketContext::GetStatId() const
 	return TStatId();
 }
 
+bool UWebSocketContext::IsTickableInEditor() const
+{
+	return (true);
+}
+
 UWebSocketBase* UWebSocketContext::Connect(const FString& uri, const TMap<FString, FString>& header)
 {
 	if (mlwsContext == nullptr)

@@ -46,6 +46,7 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	virtual bool IsTickable() const override;
 	virtual TStatId GetStatId() const override;
+	virtual bool IsTickableInEditor() const;
 
 	UWebSocketBase* Connect(const FString& uri);
 	UWebSocketBase* Connect(const FString& uri, const TMap<FString, FString>& header);
