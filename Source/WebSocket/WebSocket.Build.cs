@@ -62,14 +62,15 @@ public class WebSocket : ModuleRules
 			}
 			);
 
+        string ThirdPartyDir = Path.GetFullPath(Path.Combine(ModuleDirectory, "../", "../", "ThirdParty"));
 
         if (Target.Platform == UnrealTargetPlatform.Win64)
         {
             PrivateDependencyModuleNames.Add("zlib");
             PrivateDependencyModuleNames.Add("OpenSSL");
-            PrivateIncludePaths.Add("WebSocket/ThirdParty/include/Win64");
+            PrivateIncludePaths.Add(Path.Combine(ThirdPartyDir, "include", "Win64"));
 
-            string strStaticPath = Path.GetFullPath(Path.Combine(ModulePath, "ThirdParty/lib/Win64/"));
+            string strStaticPath = Path.GetFullPath(Path.Combine(ThirdPartyDir, "lib", "Win64"));
             PublicLibraryPaths.Add(strStaticPath);
 
 
@@ -86,8 +87,9 @@ public class WebSocket : ModuleRules
         }
         else if(Target.Platform == UnrealTargetPlatform.Mac)
         {
-            PrivateIncludePaths.Add("WebSocket/ThirdParty/include/Mac");
-            string strStaticPath = Path.GetFullPath(Path.Combine(ModulePath, "ThirdParty/lib/Mac/"));
+            PrivateIncludePaths.Add(Path.Combine(ThirdPartyDir, "include", "Mac"));
+            string strStaticPath = Path.GetFullPath(Path.Combine(ThirdPartyDir, "lib", "Mac"));
+
             //PublicLibraryPaths.Add(strStaticPath);
 
             string[] StaticLibrariesMac = new string[] {
@@ -104,63 +106,22 @@ public class WebSocket : ModuleRules
         else if (Target.Platform == UnrealTargetPlatform.Linux)
         {
             PrivateDependencyModuleNames.Add("OpenSSL");
-            PrivateIncludePaths.Add("WebSocket/ThirdParty/include/Linux");
-            string strStaticPath = Path.GetFullPath(Path.Combine(ModulePath, "ThirdParty/lib/Linux/"));
+            PrivateIncludePaths.Add(Path.Combine(ThirdPartyDir, "include", "Linux"));
+
+            string strStaticPath = Path.GetFullPath(Path.Combine(ThirdPartyDir, "lib", "Linux"));
+
             PublicLibraryPaths.Add(strStaticPath);
 
-            string[] StaticLibrariesMac = new string[] {
+            string[] StaticLibrariesLinux = new string[] {
                 "libwebsockets.a",
                 //"libssl.a",
                 //"libcrypto.a"
             };
             
-            foreach (string Lib in StaticLibrariesMac)
+            foreach (string Lib in StaticLibrariesLinux)
             {
                 PublicAdditionalLibraries.Add(Path.Combine(strStaticPath, Lib));
             }
-        }
-        else if(Target.Platform == UnrealTargetPlatform.IOS)
-        {
-            PrivateIncludePaths.Add("WebSocket/ThirdParty/include/IOS");
-
-            string PluginPath = Utils.MakePathRelativeTo(ModuleDirectory, Target.RelativeEnginePath + "/Source/");
-            PluginPath = PluginPath.Replace("\\", "/");
-
-            string strStaticPath = PluginPath + "/ThirdParty/lib/IOS/";// Path.GetFullPath(Path.Combine(ModulePath, "ThirdParty/lib/IOS/"));
-            PublicLibraryPaths.Add(strStaticPath);
-
-            string[] StaticLibrariesIOS = new string[] {
-                "websockets",
-                "ssl",
-                "crypto"
-            };
-
-            foreach (string Lib in StaticLibrariesIOS)
-            {
-                PublicAdditionalLibraries.Add(Lib);
-                PublicAdditionalShadowFiles.Add(Path.Combine(strStaticPath, "lib" + Lib + ".a") );
-            }
-        }
-        else if(Target.Platform == UnrealTargetPlatform.Android)
-        {
-            PrivateIncludePaths.Add("WebSocket/ThirdParty/include/Android");
-            string strStaticPath = Path.GetFullPath(Path.Combine(ModulePath, "ThirdParty/lib/Android/armeabi-v7a"));
-            PublicLibraryPaths.Add(strStaticPath);
-
-
-            string[] StaticLibrariesAndroid = new string[] {
-                "websockets",
-                //"ssl",
-                //"crypto"
-            };
-
-            foreach (string Lib in StaticLibrariesAndroid)
-            {
-                PublicAdditionalLibraries.Add(Lib);
-            }
-            
-            string PluginPath = Utils.MakePathRelativeTo(ModuleDirectory, Target.RelativeEnginePath);
-            AdditionalPropertiesForReceipt.Add(new ReceiptProperty("AndroidPlugin", Path.Combine(PluginPath, "WebSocket_UPL.xml")));
         }
     }
 }

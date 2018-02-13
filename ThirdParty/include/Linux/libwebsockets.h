@@ -203,7 +203,9 @@ typedef unsigned long long lws_intptr_t;
 #include <wolfssl/error-ssl.h>
 #endif /* not USE_OLD_CYASSL */
 #else
+#define UI UI_ST //4.19 redefinition of 'UI' as different kind of symbol fix
 #include <openssl/ssl.h>
+#undef UI //4.19 redefinition of 'UI' as different kind of symbol fix
 #if !defined(LWS_WITH_ESP32)
 #include <openssl/err.h>
 #endif
