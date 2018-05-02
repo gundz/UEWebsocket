@@ -13,7 +13,7 @@
 	"CanContainContent": true,
 	"IsBetaVersion": false,
 	"Installed": true,
-	"EnabledByDefault: true,
+	"EnabledByDefault": true,
 	"Modules": [
     {
       "Name": "WebSocket",
