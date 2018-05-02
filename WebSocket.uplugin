@@ -12,7 +12,8 @@
 	"SupportURL": "",
 	"CanContainContent": true,
 	"IsBetaVersion": false,
-	"Installed": false,
+	"Installed": true,
+	"EnabledByDefault: true,
 	"Modules": [
     {
       "Name": "WebSocket",
