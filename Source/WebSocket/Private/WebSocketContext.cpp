@@ -22,7 +22,7 @@
 #include "WebSocketContext.h"
 
 #include "WebSocket.h"
-#include "UObjectGlobals.h"
+#include "Runtime/CoreUObject/Public/UObject/UObjectGlobals.h"
 #include "WebSocketBase.h"
 
 

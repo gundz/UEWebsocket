@@ -15,10 +15,14 @@
 	"Installed": true,
 	"EnabledByDefault": true,
 	"Modules": [
-    {
-      "Name": "WebSocket",
-      "Type": "Runtime",
-      "LoadingPhase": "Default"
-    }
+		{
+			"Name": "WebSocket",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+			,"WhitelistPlatforms" :
+			[
+				"Win64",
+			]
+		}
 	]
 }
