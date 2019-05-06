@@ -25,7 +25,7 @@
 #include <iostream>
 #include "libwebsockets.h"
 
-#define MAX_ECHO_PAYLOAD 64*1024
+#define MAX_ECHO_PAYLOAD 256*1024
 
 UWebSocketBase::UWebSocketBase()
 {
